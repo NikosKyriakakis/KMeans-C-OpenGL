@@ -1,0 +1,27 @@
+// Name of file
+// Leave it on src/ folder
+filename = "data.txt";  
+
+// Window max width
+width = 500;            
+
+// Window max height
+height = 500;           
+
+// Window initial "x" position on screen
+pos_x = 250;            
+
+// Window initial "y" position on screen
+pos_y = 250;            
+
+// Window title
+title = "K-Means";
+
+// Number of clusters to form
+clusters = 3;
+
+// Bound for kmeans algorithm
+threshold = 5;
+
+// If set to 1 draws lines between centroids and points
+web_flag = 1;

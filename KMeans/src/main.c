@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    // Allocate point array
+    // Allocate point list
     points = init_list();
     if(!points) {
         clean_up(ptrs, win, axis, plot);
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    // Store points in array and extract axis values
+    // Store points in list and extract axis values
     status = read_data_file(points, axis, data_filename);
     if(!status) {
         clean_up(ptrs, win, axis, plot);

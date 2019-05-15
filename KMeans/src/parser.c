@@ -122,7 +122,7 @@ extern int set_cluster_num(const config_t *cfg, int *clusters)
     }
 
     if(*clusters <= 0 || *clusters > MAX_CLUSTERS)
-        *clusters = 3;
+        *clusters = MAX_CLUSTERS;
 
     return CONFIG_TRUE;
 }

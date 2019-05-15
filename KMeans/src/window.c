@@ -43,7 +43,7 @@ extern axis_t *allocate_axis()
  * @note   
  * @retval None
  */
-extern void set_plot_borders(plot_t *plot, axis_t *axis)
+extern void set_plot_borders(plot_t *plot, const axis_t *axis)
 {
     plot->minus_x = axis->min_x - AXIS_THRESHOLD;
     plot->minus_y = axis->min_y - AXIS_THRESHOLD;

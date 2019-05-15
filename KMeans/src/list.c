@@ -28,7 +28,7 @@ extern list_t *init_list()
  * @param  point: the point to be inserted
  * @retval 0 on failure : 1 on success
  */
-extern int insert_head(list_t *list, point_t point)
+extern int insert_head(list_t *list, const point_t point)
 {
     node_t *new_node;
 

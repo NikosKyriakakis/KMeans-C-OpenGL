@@ -46,7 +46,7 @@ extern int read_cfg_file(config_t *cfg, const char *filename)
  * @param  *cfg: config structure for project's params
  * @retval NULL on failure : pointer to window_t struct on success 
  */
-extern window_t *set_window_attr(config_t *cfg)
+extern window_t *set_window_attr(const config_t *cfg)
 {
     int status;
     window_t *win;
@@ -111,7 +111,7 @@ extern window_t *set_window_attr(config_t *cfg)
  * @param  *clusters: number of clusters
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-extern int set_cluster_num(config_t *cfg, int *clusters)
+extern int set_cluster_num(const config_t *cfg, int *clusters)
 {
     int status;
 
@@ -134,7 +134,7 @@ extern int set_cluster_num(config_t *cfg, int *clusters)
  * @param  **filename: name and path of the file
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-extern int set_data_filename(config_t *cfg, const char **filename)
+extern int set_data_filename(const config_t *cfg, const char **filename)
 {
     int status;
 
@@ -154,7 +154,7 @@ extern int set_data_filename(config_t *cfg, const char **filename)
  * @param  *threshold: bound for the kmeans algorithm
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-extern int set_threshold(config_t *cfg, int *threshold)
+extern int set_threshold(const config_t *cfg, int *threshold)
 {
     int status;
 
@@ -177,7 +177,7 @@ extern int set_threshold(config_t *cfg, int *threshold)
  * @param  *web_flag: 
  * @retval 
  */
-extern int set_web(config_t *cfg, int *web_flag)
+extern int set_web(const config_t *cfg, int *web_flag)
 {
     int status;
 

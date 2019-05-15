@@ -14,7 +14,7 @@ typedef struct list {
 
 extern list_t *init_list();
 extern int delete_head(list_t *list);
-extern int insert_head(list_t *list, point_t point);
+extern int insert_head(list_t *list, const point_t point);
 extern void delete_list(list_t *list);
 
 #endif

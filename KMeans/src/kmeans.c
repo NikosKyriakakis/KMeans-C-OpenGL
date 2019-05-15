@@ -77,7 +77,7 @@ extern void create_centroids(point_t *centroids, const unsigned int centroids_si
  * @param  p2: second point
  * @retval float: Distance between given points
  */
-static float euclidean_distance(point_t p1, point_t p2)
+static float euclidean_distance(const point_t p1, const point_t p2)
 {
     float distance;
     float x, y;
@@ -99,7 +99,7 @@ static float euclidean_distance(point_t p1, point_t p2)
  * @param  *plot: struct with max and min coordinates
  * @retval None
  */
-extern void assign_points(list_t *point_list, point_t *centroids, const unsigned int centroids_size, plot_t *plot)
+extern void assign_points(list_t *point_list, const point_t *centroids, const unsigned int centroids_size, const plot_t *plot)
 {
     float distance, min_distance;
     point_t p1, p2;
@@ -142,7 +142,7 @@ extern void assign_points(list_t *point_list, point_t *centroids, const unsigned
  * @param  centroids_size: size of centroids
  * @retval None
  */
-extern void update_centroids(list_t *point_list, point_t *centroids, const unsigned int centroids_size)
+extern void update_centroids(const list_t *point_list, point_t *centroids, const unsigned int centroids_size)
 {
     float mean_x, mean_y;
     unsigned int count;

@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    // Allocate point list
+    // Allocate point array
     points = init_list();
     if(!points) {
         clean_up(ptrs, win, axis, plot);
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    // Store points in list and extract axis values
+    // Store points in array and extract axis values
     status = read_data_file(points, axis, data_filename);
     if(!status) {
         clean_up(ptrs, win, axis, plot);
@@ -225,12 +225,12 @@ static void draw_squares()
     glPointSize(square_size);
     glBegin(GL_POINTS);
         cur = points->head;
-	while(cur) {
+		while(cur) {
             glColor3f(cur->point.rgb.red, cur->point.rgb.green, cur->point.rgb.blue); // Set appropriate color
             glVertex2f(cur->point.x, cur->point.y);                                   
             cur = cur->next;
         }
-    glEnd();
+	glEnd();
 }
 
 /**
@@ -243,11 +243,11 @@ static void display()
 	glClearColor(1.0, 1.0, 1.0, 0.0); // Set white background
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	draw_squares();  // Draw points as squares
-	draw_dots();     // Draw centroids as dots
+    draw_squares();  // Draw points as squares
+    draw_dots();     // Draw centroids as dots
 
-    	if(web_flag)
-		draw_lines(); // Draw "spider-web"
+    if(web_flag)
+        draw_lines(); // Draw "spider-web"
 
 	glFlush();
 }
@@ -267,7 +267,7 @@ static void plot_points(int *argc, char *argv[])
     glutInitWindowSize(win->width, win->height);
     glutCreateWindow(win->title);
     glMatrixMode(GL_PROJECTION); // Set field of view
-    glLoadIdentity();
+	glLoadIdentity();
     gluOrtho2D(plot->minus_x, plot->plus_x, plot->minus_y, plot->plus_y); // Set coordinate system
     glutDisplayFunc(display);
     glutMainLoop();

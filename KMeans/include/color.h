@@ -13,6 +13,6 @@ typedef struct color {
     unsigned char blue;
 } color_t;
 
-extern void set_color(int index, unsigned char *red, unsigned char *green, unsigned char *blue);
+extern void set_color(const unsigned int index, unsigned char *red, unsigned char *green, unsigned char *blue);
 
 #endif

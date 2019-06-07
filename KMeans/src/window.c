@@ -1,42 +1,4 @@
 #include "window.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-/**
- * @brief  Function to allocate plot
- * @note   
- * @retval NULL on failure : plot_t pointer on success
- */
-extern plot_t *allocate_plot()
-{
-    plot_t *plot;
-
-    plot = malloc(sizeof(plot_t));
-    if(!plot) {
-        fprintf(stderr, "Allocation of plot failed.\n");
-        return NULL;
-    }
-
-    return plot;
-}
-
-/**
- * @brief  Function to allocate axis
- * @note   
- * @retval NULL on failure : axis_t pointer on success
- */
-extern axis_t *allocate_axis()
-{
-    axis_t *axis;
-
-    axis = malloc(sizeof(axis_t));
-    if(!axis) {
-        fprintf(stderr, "Allocation of axis failed.\n");
-        return NULL;
-    }
-    
-    return axis;
-}
 
 /**
  * @brief  Function to set plotting window borders

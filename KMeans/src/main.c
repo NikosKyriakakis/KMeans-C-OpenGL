@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
 #include "kmeans.h"
 #include "parser.h"
 
@@ -10,9 +9,9 @@
     #include <GL/glut.h>
 #endif
 
-window_t *win;
-axis_t *axis;
-plot_t *plot;
+window_t win;
+axis_t axis;
+plot_t plot;
 list_t *points;
 point_t *centroids;
 int web_flag;
@@ -21,7 +20,6 @@ const unsigned int square_size = 5;
 const unsigned int dot_size = 10;
 
 static void plot_points(int *argc, char *argv[]);
-static void clean_up(const unsigned int args_count, ...);
 static void draw_squares();
 static void draw_lines();
 static void draw_dots();
@@ -30,7 +28,6 @@ static void display();
 int main(int argc, char *argv[])
 {
     config_t cfg;
-    unsigned int ptrs;
     int status;
     int threshold;
     const char *data_filename;
@@ -44,40 +41,17 @@ int main(int argc, char *argv[])
     if(!status)
         return EXIT_FAILURE;
 
-    // Pointers to free
-    ptrs = 0;
-
     // Init window
-    win = set_window_attr(&cfg);
-    if(!win) {
-        config_destroy(&cfg);
-        return EXIT_FAILURE;
+    status = set_window_attr(&win, &cfg);
+    if(!status) {
+    	config_destroy(&cfg);
+    	return EXIT_FAILURE;
     }
-    ptrs++;
-
-    // Allocate axis
-    axis = allocate_axis();
-    if(!axis) {
-        clean_up(ptrs, win);
-        config_destroy(&cfg);
-        return EXIT_FAILURE;
-    }
-    ptrs++;
-    
-    // Allocate plot
-    plot = allocate_plot();
-    if(!plot) {
-        clean_up(ptrs, win, axis);
-        config_destroy(&cfg);
-        return EXIT_FAILURE;
-    }
-    ptrs++;
-
+    	
     // Get number of clusters
     // and name of data file from cfg file
     status = set_cluster_num(&cfg, &centroids_size);
     if(!status) {
-        clean_up(ptrs, win, axis, plot);
         config_destroy(&cfg);
         return EXIT_FAILURE;
     }
@@ -85,7 +59,6 @@ int main(int argc, char *argv[])
     // Get data filename from config file
     status = set_data_filename(&cfg, &data_filename);
     if(!status) {
-        clean_up(ptrs, win, axis, plot);
         config_destroy(&cfg);
         return EXIT_FAILURE;
     }
@@ -93,15 +66,13 @@ int main(int argc, char *argv[])
     // Allocate point array
     points = init_list();
     if(!points) {
-        clean_up(ptrs, win, axis, plot);
         config_destroy(&cfg);
         return EXIT_FAILURE;
     }
 
     // Store points in array and extract axis values
-    status = read_data_file(points, axis, data_filename);
+    status = read_data_file(points, &axis, data_filename);
     if(!status) {
-        clean_up(ptrs, win, axis, plot);
         delete_list(points);
         config_destroy(&cfg);
         return EXIT_FAILURE;
@@ -110,14 +81,13 @@ int main(int argc, char *argv[])
     // Allocate centroids 
     centroids = allocate_points(centroids_size);
     if(!centroids) {
-        clean_up(ptrs, win, axis, plot);
         delete_list(points);
         config_destroy(&cfg);
         return EXIT_FAILURE;
     }
 
-    create_centroids(centroids, centroids_size, axis);
-    set_plot_borders(plot, axis);
+    create_centroids(centroids, centroids_size, &axis);
+    set_plot_borders(&plot, &axis);
 
     status = set_web(&cfg, &web_flag);
     if(!status)
@@ -130,35 +100,13 @@ int main(int argc, char *argv[])
     config_destroy(&cfg);
 
     while(threshold--) {
-        assign_points(points, centroids, centroids_size, plot);
+        assign_points(points, centroids, centroids_size, &plot);
         update_centroids(points, centroids, centroids_size);
     }
     
     plot_points(&argc, argv);
 
     return 0;
-}
-
-/**
- * @brief  Variadic function to free multiple pointers
- * @note   
- * @param  args_count: Number of pointers to free
- * @retval None
- */
-static void clean_up(const unsigned int args_count, ...)
-{
-    va_list args;
-    void *arg;
-
-    va_start(args, args_count);
-
-    for(int i = 0; i < args_count; i++) {
-        arg = va_arg(args, void *);
-        free(arg);
-        arg = NULL;
-    }
-
-    va_end(args);
 }
 
 /**
@@ -263,12 +211,12 @@ static void plot_points(int *argc, char *argv[])
 {
     glutInit(argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); // Select single buffer and rgb bitmask
-    glutInitWindowPosition(win->pos_x, win->pos_y);
-    glutInitWindowSize(win->width, win->height);
-    glutCreateWindow(win->title);
+    glutInitWindowPosition(win.pos_x, win.pos_y);
+    glutInitWindowSize(win.width, win.height);
+    glutCreateWindow(win.title);
     glMatrixMode(GL_PROJECTION); // Set field of view
 	glLoadIdentity();
-    gluOrtho2D(plot->minus_x, plot->plus_x, plot->minus_y, plot->plus_y); // Set coordinate system
+    gluOrtho2D(plot.minus_x, plot.plus_x, plot.minus_y, plot.plus_y); // Set coordinate system
     glutDisplayFunc(display);
     glutMainLoop();
 }

@@ -46,62 +46,49 @@ extern int read_cfg_file(config_t *cfg, const char *filename)
  * @param  *cfg: config structure for project's params
  * @retval NULL on failure : pointer to window_t struct on success 
  */
-extern window_t *set_window_attr(const config_t *cfg)
+extern int set_window_attr(window_t *win, const config_t *cfg)
 {
     int status;
-    window_t *win;
-
-    // Allocate window
-    win = malloc(sizeof(window_t));
-    if(!win) {
-        fprintf(stderr, "Allocation of window failed.\n");
-        return NULL;
-    }
         
     // Fetch window width
     status = config_lookup_int(cfg, "width", &(win->width));
     if(!status) {
         fprintf(stderr, "Unable to acquire <width> parameter.\n");
-        free(win);
-        return NULL;
+        return 0;
     }
        
     // Fetch window height
     status = config_lookup_int(cfg, "height", &(win->height));
     if(!status) {
         fprintf(stderr, "Unable to acquire <height> parameter.\n");
-        free(win);
-        return NULL;
+        return 0;
     }
 
     // Fetch window 'x' position
     status = config_lookup_int(cfg, "pos_x", &(win->pos_x));
     if(!status) {
         fprintf(stderr, "Unable to acquire <pos_x> parameter.\n");
-        free(win);
-        return NULL;
+        return 0;
     }
 
     // Fetch window 'y' position
     status = config_lookup_int(cfg, "pos_y", &(win->pos_y));
     if(!status) {
         fprintf(stderr, "Unable to acquire <pos_y> parameter.\n");
-        free(win);
-        return NULL;
+        return 0;
     }
 
     // Fetch window title
     status = config_lookup_string(cfg, "title", &(win->title));
     if(!status) {
         fprintf(stderr, "Unable to acquire <title> parameter.\n");
-        free(win);
-        return NULL;
+        return 0;
     }
 
     if(strlen(win->title) > TITLE)
         win->title = "K-Means";
 
-    return win;
+    return 1;
 }
 
 /**

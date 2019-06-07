@@ -25,8 +25,6 @@ typedef struct plot {
     int minus_y;
 } plot_t;
 
-extern plot_t *allocate_plot();
-extern axis_t *allocate_axis();
 extern void set_plot_borders(plot_t *plot, const axis_t *axis);
 
 #endif

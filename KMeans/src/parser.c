@@ -73,7 +73,7 @@ static float get_min(const float a, const float b)
  * @param  *filename: path and name of file on disk
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-extern int read_cfg_file(config_t *cfg, const char *filename)
+int read_cfg_file(config_t *cfg, const char *filename)
 {
     int cfg_status;
     int cfg_err_line;
@@ -108,7 +108,7 @@ extern int read_cfg_file(config_t *cfg, const char *filename)
  * @param  *cfg: config structure for project's params
  * @retval NULL on failure : pointer to window_t struct on success 
  */
-extern int set_window_attr(window_t *win, const config_t *cfg)
+int set_window_attr(window_t *win, const config_t *cfg)
 {
     int status;
         
@@ -160,7 +160,7 @@ extern int set_window_attr(window_t *win, const config_t *cfg)
  * @param  *clusters: number of clusters
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-extern int set_cluster_num(const config_t *cfg, int *clusters)
+int set_cluster_num(const config_t *cfg, int *clusters)
 {
     int status;
 
@@ -183,7 +183,7 @@ extern int set_cluster_num(const config_t *cfg, int *clusters)
  * @param  **filename: name and path of the file
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-extern int set_data_filename(const config_t *cfg, const char **filename)
+int set_data_filename(const config_t *cfg, const char **filename)
 {
     int status;
 
@@ -203,7 +203,7 @@ extern int set_data_filename(const config_t *cfg, const char **filename)
  * @param  *threshold: bound for the kmeans algorithm
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-extern int set_threshold(const config_t *cfg, int *threshold)
+int set_threshold(const config_t *cfg, int *threshold)
 {
     int status;
 
@@ -226,7 +226,7 @@ extern int set_threshold(const config_t *cfg, int *threshold)
  * @param  *web_flag: 
  * @retval 
  */
-extern int set_web(const config_t *cfg, int *web_flag)
+int set_web(const config_t *cfg, int *web_flag)
 {
     int status;
 
@@ -261,7 +261,7 @@ static void clean(char *line)
  * @param  *filename: path and name of data file
  * @retval 
  */
-extern int read_data_file(list_t *point_list, axis_t *axis, const char *filename)
+int read_data_file(list_t *point_list, axis_t *axis, const char *filename)
 {
     FILE *file_ptr;
 

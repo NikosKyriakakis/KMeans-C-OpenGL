@@ -1,6 +1,6 @@
 #include "color.h"
 
-extern void set_color(const unsigned int index, unsigned char *red, unsigned char *green, unsigned char *blue)
+void set_color(const unsigned int index, unsigned char *red, unsigned char *green, unsigned char *blue)
 {
     unsigned char pallete[ROWS][COLS] = {
         { 255, 0, 0 },

@@ -11,7 +11,7 @@
  * @param  *axis: struct that stores (max, min) point values
  * @retval None
  */
-void create_centroids(point_t *centroids, const unsigned int centroids_size, const axis_t *axis)
+extern void create_centroids(point_t *centroids, const unsigned int centroids_size, const axis_t *axis)
 {
     int x, y, tmp, coin;
     unsigned char r, g, b;
@@ -99,7 +99,7 @@ static float euclidean_distance(const point_t p1, const point_t p2)
  * @param  *plot: struct with max and min coordinates
  * @retval None
  */
-void assign_points(list_t *point_list, const point_t *centroids, const unsigned int centroids_size, const plot_t *plot)
+extern void assign_points(list_t *point_list, const point_t *centroids, const unsigned int centroids_size, const plot_t *plot)
 {
     float distance, min_distance;
     point_t p1, p2;
@@ -142,7 +142,7 @@ void assign_points(list_t *point_list, const point_t *centroids, const unsigned 
  * @param  centroids_size: size of centroids
  * @retval None
  */
-void update_centroids(const list_t *point_list, point_t *centroids, const unsigned int centroids_size)
+extern void update_centroids(const list_t *point_list, point_t *centroids, const unsigned int centroids_size)
 {
     float mean_x, mean_y;
     unsigned int count;

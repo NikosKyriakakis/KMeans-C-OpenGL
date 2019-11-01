@@ -3,69 +3,6 @@
 #include <string.h>
 #include "parser.h"
 
-#define TOKENS 2
-#define DELIMITER ","
-
-/**
- * @brief  Function to split a string in tokens
- * @note   
- * @param  *string: string before splitting it
- * @param  **tokens: parts of string after splitting it
- * @retval None
- */
-static void get_string_tokens(char *string, char **tokens)
-{
-    int count;
-    char *token;
-
-    for(count = 0, token = strtok(string, DELIMITER); token && count < TOKENS; count++) {
-        tokens[count] = token;
-        token = strtok(NULL, DELIMITER);
-    }
-}
-
-/**
- * @brief  Function to allocate an array of pointers to "strings"
- * @note   
- * @retval NULL on failure : pointer to tokens on success
- */
-static char **allocate_tokens()
-{
-    char **tokens;
-
-    tokens = malloc(TOKENS * sizeof(char *));
-    if(!tokens) {
-        fprintf(stderr, "Allocation of tokens failed.\n");
-        return NULL;
-    }
-
-    return tokens;
-}
-
-/**
- * @brief  Function to get max of two numbers
- * @note   
- * @param  a: first number
- * @param  b: second number
- * @retval float : max of two params
- */
-static float get_max(const float a, const float b)
-{
-    return a > b ? a : b;
-}
-
-/**
- * @brief  Function to get min of two numbers
- * @note   
- * @param  a: first number
- * @param  b: second number
- * @retval float : min of two params
- */
-static float get_min(const float a, const float b)
-{
-    return a < b ? a : b;
-}
-
 /**
  * @brief  Function to read parameters passed in the configuration file
  * @note   
@@ -73,7 +10,7 @@ static float get_min(const float a, const float b)
  * @param  *filename: path and name of file on disk
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-int read_cfg_file(config_t *cfg, const char *filename)
+extern int read_cfg_file(config_t *cfg, const char *filename)
 {
     int cfg_status;
     int cfg_err_line;
@@ -108,7 +45,7 @@ int read_cfg_file(config_t *cfg, const char *filename)
  * @param  *cfg: config structure for project's params
  * @retval NULL on failure : pointer to window_t struct on success 
  */
-int set_window_attr(window_t *win, const config_t *cfg)
+extern int set_window_attr(window_t *win, const config_t *cfg)
 {
     int status;
         
@@ -160,7 +97,7 @@ int set_window_attr(window_t *win, const config_t *cfg)
  * @param  *clusters: number of clusters
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-int set_cluster_num(const config_t *cfg, int *clusters)
+extern int set_cluster_num(const config_t *cfg, int *clusters)
 {
     int status;
 
@@ -183,7 +120,7 @@ int set_cluster_num(const config_t *cfg, int *clusters)
  * @param  **filename: name and path of the file
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-int set_data_filename(const config_t *cfg, const char **filename)
+extern int set_data_filename(const config_t *cfg, const char **filename)
 {
     int status;
 
@@ -203,7 +140,7 @@ int set_data_filename(const config_t *cfg, const char **filename)
  * @param  *threshold: bound for the kmeans algorithm
  * @retval CONFIG_TRUE on success : CONFIG_FALSE on failure
  */
-int set_threshold(const config_t *cfg, int *threshold)
+extern int set_threshold(const config_t *cfg, int *threshold)
 {
     int status;
 
@@ -226,7 +163,7 @@ int set_threshold(const config_t *cfg, int *threshold)
  * @param  *web_flag: 
  * @retval 
  */
-int set_web(const config_t *cfg, int *web_flag)
+extern int set_web(const config_t *cfg, int *web_flag)
 {
     int status;
 
@@ -261,7 +198,7 @@ static void clean(char *line)
  * @param  *filename: path and name of data file
  * @retval 
  */
-int read_data_file(list_t *point_list, axis_t *axis, const char *filename)
+extern int read_data_file(list_t *point_list, axis_t *axis, const char *filename)
 {
     FILE *file_ptr;
 

@@ -1,13 +1,13 @@
 IDIR =../include
 CC=gcc
-CFLAGS=-I$(IDIR) -lGL -lGLU -lglut -lm -lconfig
+CFLAGS=-I$(IDIR) -lGL -lGLU -lglut -lm -lconfig -no-pie
 
 ODIR=obj
 
-_DEPS = window.h parser.h color.h point.h kmeans.h list.h
+_DEPS = window.h parser.h color.h utils.h point.h kmeans.h list.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o parser.o point.o color.o kmeans.o list.o window.o
+_OBJ = main.o parser.o point.o utils.o color.o kmeans.o list.o window.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

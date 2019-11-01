@@ -7,7 +7,7 @@
  * @note   
  * @retval NULL on failure : list pointer on success
  */
-list_t *init_list()
+extern list_t *init_list()
 {
     list_t *list;
     
@@ -28,7 +28,7 @@ list_t *init_list()
  * @param  point: the point to be inserted
  * @retval 0 on failure : 1 on success
  */
-int insert_head(list_t *list, const point_t point)
+extern int insert_head(list_t *list, const point_t point)
 {
     node_t *new_node;
 
@@ -51,7 +51,7 @@ int insert_head(list_t *list, const point_t point)
  * @param  *list: list of points
  * @retval 0 on failure : 1 on success
  */
-int delete_head(list_t *list)
+extern int delete_head(list_t *list)
 {
     if(!list->head)
         return 0;
@@ -71,7 +71,7 @@ int delete_head(list_t *list)
  * @param  *list: list of points
  * @retval None
  */
-void delete_list(list_t *list)
+extern void delete_list(list_t *list)
 {
     while(delete_head(list));
 }

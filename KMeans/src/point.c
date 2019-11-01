@@ -8,7 +8,7 @@
  * @param  size: the size to allocate
  * @retval 
  */
-point_t *allocate_points(const unsigned int size)
+extern point_t *allocate_points(const unsigned int size)
 {
     point_t *points;
 

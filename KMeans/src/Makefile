@@ -1,6 +1,6 @@
 IDIR =../include
 CC=gcc
-CFLAGS=-I$(IDIR) -lGL -lGLU -lglut -lm -lconfig
+CFLAGS=-I$(IDIR) -lGL -lGLU -lglut -lm -lconfig -no-pie
 
 ODIR=obj
 
